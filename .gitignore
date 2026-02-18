@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+*.class
+.venv/
+venv/
+ENV/
+
+# Logs e Temporários
+*.log
+.DS_Store
+.idea/
+.vscode/
+
+# Security Lab
+wordlists/rockyou.txt
+results/*.txt

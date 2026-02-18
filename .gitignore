@@ -15,3 +15,19 @@ ENV/
 # Security Lab
 wordlists/rockyou.txt
 results/*.txt
+logs/
+infra/
+
+# Arquivos sensíveis
+.env
+.env.*
+*.pem
+*.key
+secrets/
+
+# Docker local
+docker-compose.override.yml
+
+# Backups
+*.bak
+*~

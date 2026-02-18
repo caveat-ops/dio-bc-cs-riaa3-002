@@ -1,0 +1,46 @@
+services:
+  ftp:
+    build: ./targets/ftp
+    container_name: ftp
+    networks:
+      - lab_network
+    ports:
+      - "2121:21"
+
+  smb:
+    build: ./targets/smb
+    container_name: smb
+    networks:
+      - lab_network
+    ports:
+      - "4455:445"
+      - "1399:139"
+
+  dvwa:
+    image: vulnerables/web-dvwa
+    container_name: dvwa
+    networks:
+      - lab_network
+    ports:
+      - "4280:80"
+    depends_on:
+      - ftp
+      - smb
+
+  attacker:
+    build: ./attacker
+    container_name: attacker
+    stdin_open: true
+    tty: true
+    networks:
+      - lab_network
+    volumes:
+      - ./wordlists:/wordlists
+    depends_on:
+      - ftp
+      - smb
+      - dvwa
+
+networks:
+  lab_network:
+    driver: bridge
